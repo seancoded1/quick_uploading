@@ -1,0 +1,193 @@
+* {
+    font-family: 'Inter', sans-serif;
+}
+
+@font-face {
+  font-family: 'MyFont'; /* Choose a name for your font family */
+  src: url('fonts/MyFont.ttf') format('truetype'); /* Provide the correct path and format */
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+    transition: background 0.6s ease, color 0.6s ease;
+}
+
+.title {
+    font-family: 'MyFont', sans-serif;
+    font-size: 6rem;
+}
+
+:root {
+    --bg-color: #000;
+    --text-color: #fff;
+    --card-bg: rgba(255,255,255,0.02);
+    --border-color: rgba(255,255,255,0.1);
+}
+
+html.light {
+    --bg-color: #f8fafc;
+    --text-color: #0f172a;
+    --card-bg: rgba(0,0,0,0.02);
+    --border-color: rgba(0,0,0,0.1);
+}
+
+::selection {
+    background: #8B5CF6;
+    color: white;
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    border-color: #8B5CF6;
+    transform: scale(1.05);
+}
+
+.sun, .moon {
+    position: absolute;
+    transition: all 0.5s ease;
+}
+
+.sun {
+    width: 24px;
+    height: 24px;
+    background: linear-gradient(135deg, #FCD34D, #F59E0B);
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(252, 211, 77, 0.5);
+}
+
+.moon {
+    width: 22px;
+    height: 22px;
+    background: linear-gradient(135deg, #E2E8F0, #CBD5E1);
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(226, 232, 240, 0.3);
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.moon::before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: linear-gradient(135deg, #94A3B8, #64748B);
+    border-radius: 50%;
+    top: -4px;
+    left: -4px;
+}
+
+html.light .sun {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+html.light .moon {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.logo-container {
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.logo-glow {
+    animation: glow 3s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0%, 100% { filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.4)); }
+    50% { filter: drop-shadow(0 0 40px rgba(139, 92, 246, 0.7)); }
+}
+
+.logo-ring {
+    animation: rotate 15s linear infinite;
+    transform-origin: center;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.cursor-dot {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: #8B5CF6;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    box-shadow: 0 0 10px #8B5CF6;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in { animation: fadeIn 0.8s ease-out forwards; }
+.delay-1 { animation-delay: 0.1s; opacity: 0; }
+.delay-2 { animation-delay: 0.2s; opacity: 0; }
+.delay-3 { animation-delay: 0.3s; opacity: 0; }
+
+.tool-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    transition: all 0.2s ease;
+}
+
+.tool-card:hover {
+    border-color: #8B5CF6;
+    transform: translateX(8px);
+}
+
+.stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 1;
+    transition: opacity 0.6s ease;
+}
+
+html.light .stars { opacity: 0; }
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: twinkle 3s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
